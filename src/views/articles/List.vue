@@ -17,14 +17,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(article, index) in articles" :key="index">
+          <tr v-for="(article, index) in paginatedArticles" :key="index">
             <td>
               <router-link :to="`/articles/${article.id}`">{{
                 article.title
               }}</router-link>
             </td>
             <td>{{ article.content }}</td>
-            <td>{{ article.reg_user_id }}</td>
+            <td>{{ article.regUserId }}</td>
           </tr>
         </tbody>
       </table>
@@ -32,10 +32,12 @@
     <Pagination
       :pageNumber="pageNumber"
       :pageSize="pageSize"
+      :totalItems="totalItems"
       @change-page="changePage"
     />
   </div>
 </template>
+
 <script>
 import { axiosWithAuth } from "@/utils/axios";
 import Pagination from "@/components/Pagination.vue";
@@ -48,10 +50,17 @@ export default {
   data() {
     return {
       articles: [],
-      reg_user_id: "",
+      totalItems: 0, // 총 게시글 수
       pageNumber: 1,
       pageSize: 10,
     };
+  },
+  computed: {
+    paginatedArticles() {
+      const start = (this.pageNumber - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.articles.slice(start, end);
+    },
   },
   methods: {
     async fetchData() {
@@ -61,25 +70,17 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const authInstance = axiosWithAuth(accessToken);
         const response = await authInstance.get(
-          "http://localhost:8080/article/list",
-          {
-            // headers: {
-            //   Authorization: "Bearer " + this.$store.state.accessToken,
-            // },
-            params: {
-              page: this.pageNumber,
-              size: this.pageSize,
-            },
-          }
+          "http://localhost:8080/article/list"
         );
+        console.log(response.data.data);
         this.articles = response.data.data;
+        this.totalItems = this.articles.length; // 총 게시글 수를 설정
       } catch (e) {
         console.error(e);
       }
     },
     changePage(pageNumber) {
       this.pageNumber = pageNumber;
-      this.fetchData();
     },
   },
   async mounted() {
@@ -87,6 +88,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 h1 {
   text-align: center;

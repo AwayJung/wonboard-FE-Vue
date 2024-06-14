@@ -73,7 +73,9 @@ export default {
       );
 
       try {
-        const response = await axiosWithAuth.post(
+        const accessToken = this.$store.state.accessToken;
+        const axiosInstance = axiosWithAuth(accessToken);
+        const response = await axiosInstance.post(
           "http://localhost:8080/article/post",
           formData,
           {
