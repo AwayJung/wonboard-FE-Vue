@@ -7,7 +7,7 @@
         <p>{{ article.reg_user_id }}</p>
         <p>{{ article.content }}</p>
       </div>
-      <div v-if="article.reg_user_id === $store.state.loginEmail">
+      <div v-if="article.regUserId === $store.state.loginEmail">
         <router-link :to="`/articles/edit/${article.id}`" class="submit-button"
           >수정</router-link
         >

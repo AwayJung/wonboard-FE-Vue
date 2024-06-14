@@ -7,6 +7,7 @@ import ArticleList from '@/views/articles/List.vue'
 import ArticleDetail from '@/views/articles/Detail.vue'
 import ArticleEdit from '@/views/articles/Edit.vue'
 import store from '@/stores/index.js'
+import Main from '@/views/Main.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [
     path: "/signup",
     name: "SignupView",
     component: SignupView
+  },
+  {
+    path: "/",
+    name: "Main",
+    component: Main
   },
   {
     path: "/articles/post",
