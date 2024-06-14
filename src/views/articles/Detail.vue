@@ -20,8 +20,10 @@
     </div>
   </div>
 </template>
+
 <script>
-import axios from "axios";
+// import axios from "axios";
+import { axiosWithAuth } from "@/utils/axios";
 export default {
   name: "ArticleDetailView",
   data() {
@@ -34,13 +36,15 @@ export default {
     try {
       await this.$store.dispatch("refresh");
       console.log("Detail에서 refresh()호출");
-      const response = await axios.get(
-        `http://localhost:8080/article/${articleId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.accessToken}`,
-          },
-        }
+      const accessToken = this.$store.state.accessToken;
+      const axiosInstance = axiosWithAuth(accessToken);
+      const response = await axiosInstance.get(
+        `http://localhost:8080/article/${articleId}`
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${this.$store.state.accessToken}`,
+        //   },
+        // }
       );
       this.article = response.data.data;
     } catch (e) {
@@ -54,13 +58,15 @@ export default {
         await this.$store.dispatch("refresh");
         console.log("토큰", this.$store.state.accessToken);
         console.log("아이디", this.$route.params.id);
-        await axios.delete(
-          `http://localhost:8080/article/${this.$route.params.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${this.$store.state.accessToken}`,
-            },
-          }
+        const accessToken = this.$store.state.accessToken;
+        const axiosInstance = axiosWithAuth(accessToken);
+        await axiosInstance.delete(
+          `http://localhost:8080/article/${this.$route.params.id}`
+          // {
+          //   headers: {
+          //     Authorization: `Bearer ${this.$store.state.accessToken}`,
+          //   },
+          // }
         );
         confirm("게시글을 삭제하시겠습니까?");
         this.$router.push("/articles/list");

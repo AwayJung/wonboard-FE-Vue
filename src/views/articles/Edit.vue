@@ -39,7 +39,8 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
+import { axiosWithAuth } from "@/utils/axios";
 
 export default {
   name: "ArticleEdit",
@@ -55,13 +56,15 @@ export default {
     async fetchArticle() {
       try {
         await this.$store.dispatch("refresh");
-        const response = await axios.get(
-          `http://localhost:8080/article/${this.$route.params.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${this.$store.state.accessToken}`,
-            },
-          }
+        const accessToken = this.$store.state.accessToken;
+        const axiosInstance = axiosWithAuth(accessToken);
+        const response = await axiosInstance.get(
+          `http://localhost:8080/article/${this.$route.params.id}`
+          // {
+          //   headers: {
+          //     Authorization: `Bearer ${this.$store.state.accessToken}`,
+          //   },
+          // }
         );
         this.article.title = response.data.data.title;
         this.article.content = response.data.data.content;
@@ -89,12 +92,14 @@ export default {
 
       try {
         await this.$store.dispatch("refresh");
-        const res = await axios.put(
+        const accessToken = this.$store.state.accessToken;
+        const axiosInstance = axiosWithAuth(accessToken);
+        const res = await axiosInstance.put(
           `http://localhost:8080/article/${this.$route.params.id}`,
           formData,
           {
             headers: {
-              Authorization: `Bearer ${this.$store.state.accessToken}`,
+              //  Authorization: `Bearer ${this.$store.state.accessToken}`,
               "Content-Type": "multipart/form-data",
             },
           }

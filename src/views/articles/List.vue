@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import { axiosWithAuth } from "@/utils/axios";
 import Pagination from "@/components/Pagination.vue";
 
 export default {
@@ -58,15 +58,20 @@ export default {
       try {
         await this.$store.dispatch("refresh");
         console.log("List에서 refresh()호출");
-        const response = await axios.get("http://localhost:8080/article/list", {
-          headers: {
-            Authorization: "Bearer " + this.$store.state.accessToken,
-          },
-          params: {
-            page: this.pageNumber,
-            size: this.pageSize,
-          },
-        });
+        const accessToken = this.$store.state.accessToken;
+        const authInstance = axiosWithAuth(accessToken);
+        const response = await authInstance.get(
+          "http://localhost:8080/article/list",
+          {
+            // headers: {
+            //   Authorization: "Bearer " + this.$store.state.accessToken,
+            // },
+            params: {
+              page: this.pageNumber,
+              size: this.pageSize,
+            },
+          }
+        );
         this.articles = response.data.data;
       } catch (e) {
         console.error(e);

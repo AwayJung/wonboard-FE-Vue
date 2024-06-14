@@ -2,9 +2,10 @@
   <header>
     <div>
       <ul class="menu">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/signup">회원가입</a></li>
-        <li><a href="/login">로그인</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/signup">Signup</a></li>
+        <li v-if="!isLoggedIn"><a href="/login">Login</a></li>
+        <li v-else><a href="/" @click.prevent="logout">Logout</a></li>
       </ul>
     </div>
   </header>
@@ -12,6 +13,16 @@
 <script>
 export default {
   name: "TopHeader",
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
 };
 </script>
 <style scoped>
