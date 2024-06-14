@@ -32,8 +32,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-
+import { axiosWithAuth } from "@/utils/axios";
 export default {
   name: "PostView",
   data() {
@@ -74,12 +73,12 @@ export default {
       );
 
       try {
-        const response = await axios.post(
+        const response = await axiosWithAuth.post(
           "http://localhost:8080/article/post",
           formData,
           {
             headers: {
-              Authorization: `Bearer ${this.$store.state.accessToken}`,
+              // Authorization: `Bearer ${this.$store.state.accessToken}`,
               "Content-Type": "multipart/form-data",
             },
           }

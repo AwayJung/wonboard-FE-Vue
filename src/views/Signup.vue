@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import { axiosWithoutAuth } from "@/utils/axios";
 
 export default {
   name: "SignupView",
@@ -42,11 +42,14 @@ export default {
         return;
       }
       try {
-        const response = await axios.post("http://localhost:8080/user/signup", {
-          loginEmail: this.loginEmail,
-          password: this.password,
-          name: this.name,
-        });
+        const response = await axiosWithoutAuth.post(
+          "http://localhost:8080/user/signup",
+          {
+            loginEmail: this.loginEmail,
+            password: this.password,
+            name: this.name,
+          }
+        );
         if (response.data.result === "success") {
           alert("회원가입에 성공했습니다");
           this.$router.push("/login");
