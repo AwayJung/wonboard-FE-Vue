@@ -70,7 +70,8 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const authInstance = axiosWithAuth(accessToken);
         const response = await authInstance.get(
-          "http://localhost:8080/article/list"
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES_LIST}`
+          // "http://localhost:8080/article/list"
         );
         console.log(response.data.data);
         this.articles = response.data.data;

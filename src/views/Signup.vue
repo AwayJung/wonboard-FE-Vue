@@ -2,11 +2,7 @@
   <div class="signup">
     <div class="input-field">
       <h2>회원가입</h2>
-      <input
-        type="text"
-        v-model="loginEmail"
-        placeholder="아이디를 입력하세요"
-      />
+      <input type="text" v-model="loginEmail" placeholder="Ex) dev@naver.com" />
     </div>
     <div class="input-field">
       <input
@@ -43,7 +39,8 @@ export default {
       }
       try {
         const response = await axiosWithoutAuth.post(
-          "http://localhost:8080/user/signup",
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_USER_SIGNUP}`,
+          // "http://localhost:8080/user/signup",
           {
             loginEmail: this.loginEmail,
             password: this.password,
@@ -57,8 +54,12 @@ export default {
           alert("회원가입에 실패했습니다");
         }
       } catch (e) {
+        if (e.response.status === 400) {
+          alert("아이디를 이메일 형식으로 입력해주세요.");
+          return;
+        }
         console.error(e);
-        alert("회원가입 중 오류가 발생했습니다");
+        alert("이미 존재하는 아이디 입니다");
       }
     },
   },

@@ -24,7 +24,7 @@ const routes = [
   },
   {
     path: "/",
-    name: "Main",
+    name: "MainView",
     component: Main
   },
   {

@@ -59,7 +59,7 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const axiosInstance = axiosWithAuth(accessToken);
         const response = await axiosInstance.get(
-          `http://localhost:8080/article/${this.$route.params.id}`
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${this.$route.params.id}`
           // {
           //   headers: {
           //     Authorization: `Bearer ${this.$store.state.accessToken}`,
@@ -95,7 +95,8 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const axiosInstance = axiosWithAuth(accessToken);
         const res = await axiosInstance.put(
-          `http://localhost:8080/article/${this.$route.params.id}`,
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${this.$route.params.id}`,
+          // `http://localhost:8080/article/${this.$route.params.id}`,
           formData,
           {
             headers: {
