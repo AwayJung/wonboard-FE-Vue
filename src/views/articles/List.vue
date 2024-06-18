@@ -20,10 +20,10 @@
           <tr v-for="(article, index) in paginatedArticles" :key="index">
             <td>
               <router-link :to="`/articles/${article.id}`">{{
-                article.title
+                article.title | truncate
               }}</router-link>
             </td>
-            <td>{{ article.content }}</td>
+            <td>{{ article.content | truncate(20) }}</td>
             <td>{{ article.regUserId }}</td>
           </tr>
         </tbody>
@@ -67,6 +67,7 @@ export default {
       try {
         await this.$store.dispatch("refresh");
         console.log("List에서 refresh()호출");
+        console.log("accessToken:", this.$store.state.accessToken);
         const accessToken = this.$store.state.accessToken;
         const authInstance = axiosWithAuth(accessToken);
         const response = await authInstance.get(

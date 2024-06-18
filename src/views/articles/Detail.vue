@@ -36,6 +36,7 @@ export default {
     try {
       await this.$store.dispatch("refresh");
       console.log("Detail에서 refresh()호출");
+      console.log("accessToken:", this.$store.state.accessToken);
       const accessToken = this.$store.state.accessToken;
       const axiosInstance = axiosWithAuth(accessToken);
       const response = await axiosInstance.get(

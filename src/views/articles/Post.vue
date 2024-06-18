@@ -55,7 +55,7 @@ export default {
     async post() {
       await this.$store.dispatch("refresh");
       console.log("리프레쉬토큰 불러옴2");
-      if (!this.title || !this.content || !this.reg_user_id || !this.file) {
+      if (!this.title || !this.content || !this.file) {
         alert("모든 항목을 입력하세요");
         return;
       }

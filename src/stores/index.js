@@ -91,7 +91,7 @@ export default new Vuex.Store({
       const now = Date.now();
       if(state.accessTokenExpire < now) {
         try{
-           const response = await axios.post( `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_USER_REFRESH_TOKEN}`, 
+           const response = await axios.post( `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_REFRESH_TOKEN}`, 
                                           {},
                                           { headers: { 
                                               'Authorization': `Bearer ${state.accessToken}`,
