@@ -8,7 +8,7 @@
       <input
         type="password"
         v-model="password"
-        placeholder="비밀번호를 입력하세요"
+        placeholder="비밀번호 10자리 이상"
       />
     </div>
     <div class="input-field">
@@ -47,19 +47,25 @@ export default {
             name: this.name,
           }
         );
-        if (response.data.result === "success") {
+        if (response.data.code === 20100) {
           alert("회원가입에 성공했습니다");
           this.$router.push("/login");
         } else {
           alert("회원가입에 실패했습니다");
         }
       } catch (e) {
-        if (e.response.status === 400) {
-          alert("아이디를 이메일 형식으로 입력해주세요.");
-          return;
+        if (e.response && e.response.data) {
+          if (e.response.data.code === 40001) {
+            alert("아이디 또는 비밀번호 형식이 맞지 않습니다.");
+          } else if (e.response.data.code === 40901) {
+            alert("이미 존재하는 아이디 입니다");
+          } else {
+            alert("회원가입에 실패했습니다");
+          }
+        } else {
+          console.error(e);
+          alert("회원가입에 실패했습니다");
         }
-        console.error(e);
-        alert("이미 존재하는 아이디 입니다");
       }
     },
   },
