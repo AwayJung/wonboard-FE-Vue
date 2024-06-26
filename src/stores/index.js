@@ -88,7 +88,7 @@ export default new Vuex.Store({
                                               'Authorization': `Bearer ${state.accessToken}`,
                                               'refreshToken': state.refreshToken 
                                           } });
-            if(response.data.result === 'success') {
+            if(response.data.code === 20001) {
                 commit('setAccessToken', response.data.data.accessToken);
                 commit('setRefreshToken', response.data.data.refreshToken);  
                 commit('setAccessTokenExpire', Date.now() + 50000); 
