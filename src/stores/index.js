@@ -41,37 +41,28 @@ export default new Vuex.Store({
     // 사용자 정보를 변경하는 비동기 메서드
     actions: {
         // 로그인
-       async login({ commit }, { loginEmail, password }) {
-    try {
-        console.log("store에서 로그인시도");
-      const response = await axios.post( `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_USER_LOGIN}`, { loginEmail, password });
-        console.log(response);
-      if (response.data.result === 'success') {
-        commit('setLoginEmail', response.data.data.loginEmail);
-        commit('setAccessToken', response.data.data.accessToken);
-        commit('setRefreshToken', response.data.data.refreshToken);
-        commit('setAccessTokenExpire', Date.now() + 50000);
-        commit('setIsLoggedIn', true);
-
-        return response;
-      } else {
-        return { result: false, message: response.data.message };
-      }
-    } catch (error) {
-      if(error.response.status === 401) {
-        alert('아이디 또는 비밀번호가 틀렸습니다.');
-        return { result: false, message: '아이디 또는 비밀번호가 틀렸습니다.' };
-        
-      }else if(error.response.status === 500) {
-      console.error(error);
-      alert('로그인 중 에러가 발생했습니다.');
-      return { success: false, message: '로그인 중 에러가 발생했습니다.' };
-    }else if(error.response.status === 400) {
-      alert(' 이메일 형식으로 입력해주세요.');  
-      return { success: false, message: '이메일 형식으로 입력해주세요.' };
+ async login({ commit }, { loginEmail, password }) {
+  try {
+    const response = await axios.post(`${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_USER_LOGIN}`, { loginEmail, password });
+    if (response.data.code === 20000) {
+      commit('setLoginEmail', response.data.data.loginEmail);
+      commit('setAccessToken', response.data.data.accessToken);
+      commit('setRefreshToken', response.data.data.refreshToken);
+      commit('setAccessTokenExpire', Date.now() + 50000);
+      commit('setIsLoggedIn', true);
+      return { success: true, message: '로그인에 성공했습니다', data: response.data.data };
+    } else {
+      throw new Error(response.data.message);
     }
+  } catch (error) {
+    console.error(error);
+    if (error.response && error.response.data.code === 40400) {
+      return { success: false, message: '아이디 또는 비밀번호가 일치하지 않습니다' };
+    } else {
+      return { success: false, message: '이메일 형식에 맞게 작성해주세요.' };
     }
-  },
+  }
+},
 
       // 로그아웃
         logout({ commit }) {
