@@ -74,9 +74,9 @@ export default {
     },
     async updateArticle() {
       const formData = new FormData();
-      formData.append("title", this.article.title);
+      // formData.append("title", this.article.title);
       formData.append(
-        "article",
+        "articleV2Req",
         new Blob(
           [
             JSON.stringify({
@@ -105,8 +105,7 @@ export default {
             },
           }
         );
-        if (res.data.result === "success")
-          this.$router.push({ name: "ArticleList" });
+        if (res.data.code === 20000) this.$router.push({ name: "ArticleList" });
       } catch (error) {
         console.error("토큰", this.$store.state.accessToken);
         console.error(error);

@@ -89,7 +89,7 @@ export default new Vuex.Store({
                                               'refreshToken': state.refreshToken 
                                           } });
             if(response.data.code === 20001) {
-                commit('setAccessToken', response.data.data.accessToken);
+                commit('setAccessToken', response.data.data.accessToken); 
                 commit('setRefreshToken', response.data.data.refreshToken);  
                 commit('setAccessTokenExpire', Date.now() + 50000); 
                 localStorage.setItem('accessToken', response.data.data.accessToken);

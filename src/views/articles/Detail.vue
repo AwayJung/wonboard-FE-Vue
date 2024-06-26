@@ -4,7 +4,7 @@
     <div class="form-container">
       <div class="author-info">
         <h2>{{ article.title }}</h2>
-        <p>{{ article.reg_user_id }}</p>
+        <p>{{ article.regUserId }}</p>
         <p>{{ article.content }}</p>
       </div>
       <div v-if="article.regUserId === $store.state.loginEmail">
