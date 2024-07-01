@@ -2,9 +2,7 @@
   <div>
     <h2>게시글 수정</h2>
     <div class="form-container">
-      <div class="form-group">
-        <!-- <label for="title">Title</label> -->
-      </div>
+      <div class="form-group"></div>
       <input
         class="input-field"
         type="text"
@@ -21,6 +19,9 @@
         name="content"
         v-model="article.content"
       ></textarea>
+      <div>
+        <input type="file" @change="onFileChange" />
+      </div>
     </div>
     <div></div>
     <div>
@@ -39,7 +40,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 import { axiosWithAuth } from "@/utils/axios";
 
 export default {
@@ -49,10 +49,14 @@ export default {
       article: {
         title: "",
         content: "",
+        newFile: null,
       },
     };
   },
   methods: {
+    onFileChange(e) {
+      this.article.newFile = e.target.files[0];
+    },
     async fetchArticle() {
       try {
         await this.$store.dispatch("refresh");
@@ -60,11 +64,6 @@ export default {
         const axiosInstance = axiosWithAuth(accessToken);
         const response = await axiosInstance.get(
           `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${this.$route.params.id}`
-          // {
-          //   headers: {
-          //     Authorization: `Bearer ${this.$store.state.accessToken}`,
-          //   },
-          // }
         );
         this.article.title = response.data.data.title;
         this.article.content = response.data.data.content;
@@ -74,7 +73,6 @@ export default {
     },
     async updateArticle() {
       const formData = new FormData();
-      // formData.append("title", this.article.title);
       formData.append(
         "articleV2Req",
         new Blob(
@@ -89,7 +87,9 @@ export default {
           }
         )
       );
-
+      if (this.article.newFile) {
+        formData.append("newFile", this.article.newFile);
+      }
       try {
         await this.$store.dispatch("refresh");
         const accessToken = this.$store.state.accessToken;

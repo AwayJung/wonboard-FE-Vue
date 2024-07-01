@@ -68,7 +68,7 @@ export default {
       const formData = new FormData();
       formData.append("file", this.file);
       formData.append(
-        "article",
+        "articleV2Req",
         new Blob([JSON.stringify(article)], { type: "application/json" })
       );
 
@@ -76,7 +76,7 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const axiosInstance = axiosWithAuth(accessToken);
         const response = await axiosInstance.post(
-          "http://localhost:8080/article/post",
+          "http://localhost:8080/v2/articles/",
           formData,
           {
             headers: {
@@ -85,7 +85,7 @@ export default {
             },
           }
         );
-        if (response.data.result === "success") {
+        if (response.data.code === 20100) {
           alert("게시글이 작성되었습니다");
           this.$router.push("/articles/list");
         } else {

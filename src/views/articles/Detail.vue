@@ -4,10 +4,10 @@
     <div class="form-container">
       <div class="author-info">
         <h2>{{ article.title }}</h2>
-        <p>{{ article.regUserId }}</p>
+        <p>{{ article.writer }}</p>
         <p>{{ article.content }}</p>
       </div>
-      <div v-if="article.regUserId === $store.state.loginEmail">
+      <div v-if="article.writer === $store.state.name">
         <router-link :to="`/articles/edit/${article.id}`" class="submit-button"
           >수정</router-link
         >
@@ -32,6 +32,7 @@ export default {
     };
   },
   async created() {
+    console.log(this.$store.state.name);
     const articleId = this.$route.params.id;
     try {
       await this.$store.dispatch("refresh");
@@ -41,12 +42,6 @@ export default {
       const axiosInstance = axiosWithAuth(accessToken);
       const response = await axiosInstance.get(
         `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${articleId}`
-        // `http://localhost:8080/article/${articleId}`
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${this.$store.state.accessToken}`,
-        //   },
-        // }
       );
       this.article = response.data.data;
     } catch (e) {
@@ -59,7 +54,6 @@ export default {
       try {
         await this.$store.dispatch("refresh");
         console.log("토큰", this.$store.state.accessToken);
-        console.log("아이디", this.$route.params.id);
         const accessToken = this.$store.state.accessToken;
         const axiosInstance = axiosWithAuth(accessToken);
         await axiosInstance.delete(

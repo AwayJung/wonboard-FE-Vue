@@ -24,7 +24,7 @@
               }}</router-link>
             </td>
             <td>{{ article.content | truncate(20) }}</td>
-            <td>{{ article.regUserId }}</td>
+            <td>{{ article.writer }}</td>
           </tr>
         </tbody>
       </table>
@@ -71,7 +71,7 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const authInstance = axiosWithAuth(accessToken);
         const response = await authInstance.get(
-          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES_LIST}`
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}`
           // "http://localhost:8080/article/list"
         );
         console.log(response.data.data);

@@ -9,6 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     // 사용자 정보를 저장할 상태
     state: {
+        name: null,
         loginEmail: null,
         accessToken: null,
         refreshToken: null,
@@ -17,6 +18,10 @@ export default new Vuex.Store({
     },
     // 사용자 정보를 변경하는 메서드
   mutations: {
+    setName(state, name) {
+    state.name = name; 
+    localStorage.setItem('name', name);
+  },
   setLoginEmail(state, loginEmail) {
     state.loginEmail = loginEmail;
     localStorage.setItem('loginEmail', loginEmail);
@@ -45,6 +50,7 @@ export default new Vuex.Store({
   try {
     const response = await axios.post(`${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_USER_LOGIN}`, { loginEmail, password });
     if (response.data.code === 20000) {
+      commit('setName', response.data.data.name);
       commit('setLoginEmail', response.data.data.loginEmail);
       commit('setAccessToken', response.data.data.accessToken);
       commit('setRefreshToken', response.data.data.refreshToken);
@@ -66,6 +72,7 @@ export default new Vuex.Store({
 
       // 로그아웃
         logout({ commit }) {
+            commit("setName", null);
             commit("setLoginEmail", null);
             commit("setAccessToken", null);
             commit("setRefreshToken", null);
@@ -89,6 +96,7 @@ export default new Vuex.Store({
                                               'refreshToken': state.refreshToken 
                                           } });
             if(response.data.code === 20001) {
+                commit('setName', response.data.data.name);
                 commit('setAccessToken', response.data.data.accessToken); 
                 commit('setRefreshToken', response.data.data.refreshToken);  
                 commit('setAccessTokenExpire', Date.now() + 50000); 
