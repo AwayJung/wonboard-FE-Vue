@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(article, index) in paginatedArticles" :key="index">
+          <tr v-for="(article, index) in articles" :key="index">
             <td>
               <router-link :to="`/articles/${article.id}`">{{
                 article.title | truncate
@@ -33,8 +33,15 @@
       :pageNumber="pageNumber"
       :pageSize="pageSize"
       :totalItems="totalItems"
+      :totalPages="totalPages"
       @change-page="changePage"
     />
+    <!-- <Pagination
+      :pageNumber="pageNumber"
+      :pageSize="pageSize"
+      :totalItems="totalItems"
+      @change-page="changePage"
+    /> -->
   </div>
 </template>
 
@@ -56,10 +63,8 @@ export default {
     };
   },
   computed: {
-    paginatedArticles() {
-      const start = (this.pageNumber - 1) * this.pageSize;
-      const end = start + this.pageSize;
-      return this.articles.slice(start, end);
+    totalPages() {
+      return Math.ceil(this.totalItems / this.pageSize);
     },
   },
   methods: {
@@ -71,18 +76,19 @@ export default {
         const accessToken = this.$store.state.accessToken;
         const authInstance = axiosWithAuth(accessToken);
         const response = await authInstance.get(
-          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}`
-          // "http://localhost:8080/article/list"
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}?page=${this.pageNumber}&size=${this.pageSize}`
         );
         console.log(response.data.data);
-        this.articles = response.data.data;
-        this.totalItems = this.articles.length; // 총 게시글 수를 설정
+        this.articles = response.data.data.articles;
+        this.totalItems = response.data.data.totalArticle;
+        this.pageNumber = response.data.data.currentPage;
       } catch (e) {
         console.error(e);
       }
     },
     changePage(pageNumber) {
       this.pageNumber = pageNumber;
+      this.fetchData();
     },
   },
   async mounted() {

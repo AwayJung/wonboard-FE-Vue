@@ -6,6 +6,7 @@
         <h2>{{ article.title }}</h2>
         <p>{{ article.writer }}</p>
         <p>{{ article.content }}</p>
+        <!-- <img :src="imagePath" alt="Article image" /> -->
       </div>
       <div v-if="article.writer === $store.state.name">
         <router-link :to="`/articles/edit/${article.id}`" class="submit-button"
@@ -20,7 +21,6 @@
     </div>
   </div>
 </template>
-
 <script>
 // import axios from "axios";
 import { axiosWithAuth } from "@/utils/axios";
@@ -31,26 +31,38 @@ export default {
       article: {},
     };
   },
+  // computed: {
+  //   imagePath() {
+  //     if (!this.article.path) return "";
+  //     return `${process.env.VUE_APP_API_BASE_URL}/images/${this.article.path}`;
+  //   },
+  // },
   async created() {
-    console.log(this.$store.state.name);
-    const articleId = this.$route.params.id;
-    try {
-      await this.$store.dispatch("refresh");
-      console.log("Detail에서 refresh()호출");
-      console.log("accessToken:", this.$store.state.accessToken);
-      const accessToken = this.$store.state.accessToken;
-      const axiosInstance = axiosWithAuth(accessToken);
-      const response = await axiosInstance.get(
-        `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${articleId}`
-      );
-      this.article = response.data.data;
-    } catch (e) {
-      console.error(e);
-      alert("게시글을 불러오는 중 오류가 발생했습니다");
-    }
+    this.fetchArticle();
   },
   methods: {
+    async fetchArticle() {
+      console.log(this.$store.state.name);
+      const articleId = this.$route.params.id;
+      try {
+        await this.$store.dispatch("refresh");
+        console.log("Detail에서 refresh()호출");
+        console.log("accessToken:", this.$store.state.accessToken);
+        const accessToken = this.$store.state.accessToken;
+        const axiosInstance = axiosWithAuth(accessToken);
+        const response = await axiosInstance.get(
+          `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${articleId}`
+        );
+        this.article = response.data.data;
+      } catch (e) {
+        console.error(e);
+        alert("게시글을 불러오는 중 오류가 발생했습니다");
+      }
+    },
     async deleteArticle() {
+      if (!confirm("게시글을 삭제하시겠습니까?")) {
+        return;
+      }
       try {
         await this.$store.dispatch("refresh");
         console.log("토큰", this.$store.state.accessToken);
@@ -58,14 +70,7 @@ export default {
         const axiosInstance = axiosWithAuth(accessToken);
         await axiosInstance.delete(
           `${process.env.VUE_APP_API_BASE_URL}${process.env.VUE_APP_API_ARTICLES}${this.$route.params.id}`
-          // `http://localhost:8080/article/${this.$route.params.id}`
-          // {
-          //   headers: {
-          //     Authorization: `Bearer ${this.$store.state.accessToken}`,
-          //   },
-          // }
         );
-        confirm("게시글을 삭제하시겠습니까?");
         this.$router.push("/articles/list");
       } catch (e) {
         console.error(e);

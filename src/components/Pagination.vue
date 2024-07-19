@@ -30,6 +30,20 @@
 <script>
 export default {
   name: "PaginationComponent",
+  // props: {
+  //   pageNumber: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  //   pageSize: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  //   totalItems: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  // },
   props: {
     pageNumber: {
       type: Number,
