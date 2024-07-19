@@ -56,17 +56,19 @@ export default {
   },
   data() {
     return {
-      articles: [],
+      articles: [], // 게시글 목록
       totalItems: 0, // 총 게시글 수
-      pageNumber: 1,
-      pageSize: 10,
+      pageNumber: 1, // 현재 페이지 번호
+      pageSize: 10, // 한 페이지에 보여줄 게시글 수
+      totalPages: 0, // 총 페이지 수
     };
   },
-  computed: {
-    totalPages() {
-      return Math.ceil(this.totalItems / this.pageSize);
-    },
-  },
+  // 계산된 속성을 의미함
+  // computed: {
+  //   totalPages() {
+  //     return Math.ceil(this.totalItems / this.pageSize);
+  //   },
+  // },
   methods: {
     async fetchData() {
       try {
@@ -82,6 +84,7 @@ export default {
         this.articles = response.data.data.articles;
         this.totalItems = response.data.data.totalArticle;
         this.pageNumber = response.data.data.currentPage;
+        this.totalPages = response.data.data.totalPages;
       } catch (e) {
         console.error(e);
       }

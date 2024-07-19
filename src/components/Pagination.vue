@@ -57,11 +57,15 @@ export default {
       type: Number,
       required: true,
     },
+    totalPages: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
-    totalPages() {
-      return Math.ceil(this.totalItems / this.pageSize);
-    },
+    // totalPages() {
+    //   return Math.ceil(this.totalItems / this.pageSize);
+    // },
     pages() {
       const range = 2; // 현재 페이지를 중심으로 표시할 범위
       let start = this.pageNumber - range;
