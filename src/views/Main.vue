@@ -1,4 +1,3 @@
-<!-- src/views/Main.vue -->
 <template>
   <MainLayout />
 </template>

@@ -38,7 +38,11 @@ export default {
 
 .content-area {
   width: 100%;
-  padding-bottom: 2rem; 
+  padding-bottom: 2rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px; 
+  padding: 1.5rem;
+  margin-top: 4.5rem;
 }
 
 @media (max-width: 768px) {
