@@ -7,7 +7,7 @@
     <div class="profile-info">
       <h1 class="name">정원정</h1>
       <div class="username">@AwayJung</div>
-      <button class="edit-btn">Edit profile</button>
+      <!-- <button class="edit-btn">Edit profile</button> -->
 
       <!-- About Me 섹션 -->
       <div class="bio-section">
@@ -24,10 +24,11 @@
       <div class="contact-section">
         <h2 class="bio-title">Contact Me! </h2>
         <a href="mailto:wonjung67@gmail.com" class="email-link">
-          wonjung67@gmail.com
+         wonjung67@gmail.com
         </a>
         <div class="joined-date">1999.01.21</div>
-        <div class="joined-date">010-3164-3046</div>
+        <div class="joined-date">Tel) 010-3164-3046</div>
+        <div class="joined-date">Gyunggi-do, Gwacheon-si</div>
       </div>
     </div>
   </div>
@@ -50,10 +51,11 @@
 }
 
 .profile-img {
-  width: 100%;
+  width: 105%;
   aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #8b949e; 
 }
 
 .profile-info {
@@ -74,7 +76,7 @@
   margin-top: -0.5rem;
 }
 
-.edit-btn {
+/* .edit-btn {
   width: 100%;
   padding: 0.5rem;
   background-color: #fff;
@@ -87,29 +89,30 @@
 
 .edit-btn:hover {
   background-color: #f3f4f6;
-}
+} */
 
 .bio-section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  border: 1px solid #e5e7eb;     
+  border: 2px solid #3c434c;     
   border-radius: 0.5rem;        
   padding: 1rem;                 
   margin: 0.5rem 0;             
-  background-color: #fcfcfc;     
+  background-color: #24292e;     
+  
 }
 
 
 .bio-title {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   margin: 0;
 }
 
 .bio-text {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #e6e6e6;
   line-height: 1.5;
   margin: 0;
 }
@@ -119,7 +122,7 @@
   flex-direction: column;
   gap: 0.5rem;
   font-size: 0.875rem;
-  border-top: 1px solid #e5e7eb;  
+  border-top: 1px solid #3c434c;  
   padding-top: 1rem;              
   margin-top: 0.5rem;             
 }
@@ -134,6 +137,6 @@
 }
 
 .joined-date {
-  color: #6b7280;
+  color: #8b949e;
 }
 </style>

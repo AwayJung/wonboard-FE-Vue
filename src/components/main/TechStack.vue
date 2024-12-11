@@ -30,7 +30,7 @@
         <h2 class="stack-title">👥 Contact 👥</h2>
         <div class="stack-items">
           <a href="mailto:wonjung67@gmail.com" class="tech-badge gmail">GMAIL</a>
-          <a href="https://notion.so/your-page" target="_blank" class="tech-badge notion">NOTION</a>
+          <a href="https://www.notion.so/Study-Away-_-ca55382a6344434ab3a3c5b32414a0e5" target="_blank" class="tech-badge notion">NOTION</a>
         </div>
       </section>
     </div>
@@ -111,25 +111,32 @@
     color: white;
     text-decoration: none;
    }
+   .stack-title {
+    text-align: center;
+    margin: 2.5rem 0 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #e6e6e6 !important;  
+}
    
    @media (max-width: 768px) {
     .tech-stack {
-      padding: 1rem;
+        padding: 1rem;
     }
     
     .tech-badge {
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
     }
     
     .stack-title {
-      font-size: 1.3rem;
-      margin: 2rem 0 1rem;
+        font-size: 1.3rem;
+        margin: 2rem 0 1rem;
     }
    
     .stack-items {
-      gap: 0.8rem;
-      margin-bottom: 2rem;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
     }
-   }
+}
    </style>

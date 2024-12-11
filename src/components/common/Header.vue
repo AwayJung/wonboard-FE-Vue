@@ -5,11 +5,13 @@
       <div class="auth-container">
         <ul class="auth-menu">
           <template v-if="!isLoggedIn">
-            <li><router-link to="/login">Sign in</router-link></li>
-            <li><router-link to="/signup">Sign up</router-link></li>
+            <li><a href="/login"><i class="fas fa-sign-in-alt"></i> Sign in</a></li>
+            <li><a href="/signup"><i class="fas fa-user-plus"></i> Sign up</a></li>
           </template>
           <li v-else>
-            <a href="/" @click.prevent="logout" class="logout-btn">Sign out</a>
+            <a href="/" @click.prevent="logout" class="logout-btn">
+              <i class="fas fa-sign-out-alt"></i> Sign out
+            </a>
           </li>
         </ul>
       </div>
@@ -18,19 +20,31 @@
     <!-- 메인 네비게이션 -->
     <div class="main-header">
       <h1 class="name">
-        <router-link to="/" class="name-link">RESUME</router-link>
+        <router-link to="/" class="name-link">
+          <i class="fas fa-code"></i> RESUME
+        </router-link>
       </h1>
       <nav class="main-nav">
-        <router-link class="nav-link" to="/aboutMe">AboutMe</router-link>
-        <router-link class="nav-link" to="/skills">Skills</router-link>
-        <a class="nav-link" href="https://www.notion.so/Study-Away-_-ca55382a6344434ab3a3c5b32414a0e5" target="_blank">Notion</a>
-
-        <router-link class="nav-link" to="/contact">Contact</router-link>
+        <router-link class="nav-link" to="/aboutMe">
+          <i class="fas fa-user"></i>
+          <span>About Me</span>
+        </router-link>
+        <router-link class="nav-link" to="/skills">
+          <i class="fas fa-laptop-code"></i>
+          <span>Skills</span>
+        </router-link>
+        <a class="nav-link" href="https://www.notion.so/..." target="_blank">
+          <i class="fas fa-book"></i>
+          <span>Notion</span>
+        </a>
+        <router-link class="nav-link" to="/contact">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </router-link>
       </nav>
     </div>
   </div>
- </template>
- 
+</template>
  <script>
  export default {
   name: "SubHeader",
@@ -48,18 +62,18 @@
  </script>
  
  <style scoped>
- .subheader {
+.subheader {
   width: 100%;
-  background-color: #24292f;
+  background-color: #1b1f23;  
   position: fixed;
   top: 0;
   z-index: 1000;
- }
- 
+  border-bottom: 1px solid #3c434c;
+}
  .auth-section {
   background-color: #1b1f23;
-  padding: 0.3rem 0;
- }
+  padding: 0.5rem 0; 
+}
  
  .auth-container {
   max-width: 1400px;
@@ -80,13 +94,13 @@
  .auth-menu a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.75rem;
+  font-size: 1.2rem;  
   font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  padding: 0.7rem 1rem;  
   border-radius: 4px;
   transition: all 0.2s ease;
   opacity: 0.7;
- }
+}
  
  .auth-menu a:hover {
   opacity: 1;
@@ -129,14 +143,14 @@
  .nav-link {
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 1.2rem;  
   font-weight: 600;
-  padding: 0.5rem;
+  padding: 0.7rem 1rem;  
   transition: all 0.2s ease;
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   opacity: 0.7;
- }
+}
  
  .nav-link:hover {
   opacity: 1;

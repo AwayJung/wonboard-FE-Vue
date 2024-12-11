@@ -30,12 +30,15 @@ export default {
 
 html, body {
   height: 100%;
+  background-color: #24292e;  
+  color: #ffffff;
 }
 
 #app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #24292e;  
 }
 
 .main-content {
@@ -46,4 +49,20 @@ html, body {
   padding: 20px;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #24292e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383f45;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #454b52;
+}
 </style>

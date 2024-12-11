@@ -25,9 +25,9 @@
  .site-footer {
   padding: 2rem 0;
   margin-top: auto;
-  border-top: 1px solid #d0d7de;
+  border-top: 1px solid #3c434c;
   font-size: 12px;
-  background-color: #ffffff;
+  background-color: #1b1f23;
  }
  
  .footer-content {
@@ -41,12 +41,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
   color: #656d76;
  }
  
  .footer-link {
-  color: #656d76;
+  color: #e6e6e6;
   text-decoration: none;
   transition: color 0.2s ease;
  }
@@ -57,7 +57,7 @@
  }
  
  .separator {
-  color: #656d76;
+  color: #e6e6e6;
  }
  
  @media (max-width: 768px) {
