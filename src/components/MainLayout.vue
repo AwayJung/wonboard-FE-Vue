@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Profile from './Profile.vue'
-import TechStack from './TechStack.vue'
+import Profile from './main/Profile.vue'
+import TechStack from './main/TechStack.vue'
 import ProjectShowcase from './main/ProjectShowcase.vue'
 import TechInterests from './main/TechInterests.vue'
 
