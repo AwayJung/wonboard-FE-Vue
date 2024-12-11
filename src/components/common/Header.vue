@@ -21,9 +21,10 @@
         <router-link to="/" class="name-link">RESUME</router-link>
       </h1>
       <nav class="main-nav">
-        <router-link class="nav-link" to="/about">About</router-link>
+        <router-link class="nav-link" to="/aboutMe">AboutMe</router-link>
         <router-link class="nav-link" to="/skills">Skills</router-link>
-        <router-link class="nav-link" to="/blog">Blog</router-link>
+        <a class="nav-link" href="https://www.notion.so/Study-Away-_-ca55382a6344434ab3a3c5b32414a0e5" target="_blank">Notion</a>
+
         <router-link class="nav-link" to="/contact">Contact</router-link>
       </nav>
     </div>

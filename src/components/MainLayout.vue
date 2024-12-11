@@ -1,19 +1,27 @@
 <template>
   <div class="main-layout">
     <Profile class="profile-area" />
-    <TechStack class="content-area" />
+    <div class="content-area">
+      <TechStack class="content-section" />
+      <ProjectShowcase class="content-section" />
+      <TechInterests class="content-section" />
+    </div>
   </div>
 </template>
 
 <script>
 import Profile from './Profile.vue'
 import TechStack from './TechStack.vue'
+import ProjectShowcase from './main/ProjectShowcase.vue'
+import TechInterests from './main/TechInterests.vue'
 
 export default {
   name: 'MainLayout',
   components: {
     Profile,
-    TechStack
+    TechStack,
+    ProjectShowcase,
+    TechInterests
   }
 }
 </script>
@@ -37,12 +45,17 @@ export default {
 }
 
 .content-area {
-  width: 100%;
-  padding-bottom: 2rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 16px; 
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   margin-top: 4.5rem;
+}
+
+.content-section {
+  width: 100%;
+  padding: 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
 }
 
 @media (max-width: 768px) {
