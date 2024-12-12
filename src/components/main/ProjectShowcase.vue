@@ -52,15 +52,24 @@
  }
  
  .project-card {
-   background: #24292e;  /* 배경색을 메인 배경색과 동일하게 변경 */
-   border-radius: 0.75rem;
-   padding: 1.5rem;
-   border: 1px solid #30363d;  /* 테두리 색상 변경 */
-   box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;  /* 그림자 약간 진하게 */
-   position: relative;
-   z-index: 2;
- }
- 
+  background: #24292e;  
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid #30363d;  
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+              0 2px 4px -1px rgba(0, 0, 0, 0.26),
+              0 8px 16px rgba(0, 0, 0, 0.3); 
+  position: relative;
+  z-index: 2;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.4),
+              0 4px 6px -1px rgba(0, 0, 0, 0.3),
+              0 10px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
  .project-title {
    font-size: 1.25rem;
    font-weight: 600;
@@ -69,7 +78,7 @@
  }
  
  .project-description {
-   color: #8b949e;  /* 설명 텍스트 색상 변경 */
+   color: #8b949e; 
    margin-bottom: 1rem;
  }
  
@@ -84,11 +93,11 @@
    padding: 0.25rem 0.75rem;
    border-radius: 0.375rem;
    font-size: 0.875rem;
-   color: #e6e6e6;  /* 태그 텍스트 색상 변경 */
-   border: 1px solid #3c434c;  /* 태그 테두리 색상 변경 */
+   color: #e6e6e6;  
+   border: 1px solid #3c434c;  
  }
  
  h2 {
-   color: #e6e6e6;  /* Featured Work 제목 색상 변경 */
+   color: #e6e6e6;  
  }
  </style>

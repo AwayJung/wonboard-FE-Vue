@@ -21,7 +21,7 @@
     <div class="main-header">
       <h1 class="name">
         <router-link to="/" class="name-link">
-          <i class="fas fa-code"></i> RESUME
+          <i class="fas fa-code"></i> 📚 RESUME
         </router-link>
       </h1>
       <nav class="main-nav">

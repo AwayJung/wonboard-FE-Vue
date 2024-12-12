@@ -43,7 +43,7 @@
   <style scoped>
 .profile-section {
   padding: 1rem;
-  max-width: 296px;
+  max-width: 400;
 }
 
 .profile-image {
@@ -99,8 +99,9 @@
   border-radius: 0.5rem;        
   padding: 1rem;                 
   margin: 0.5rem 0;             
-  background-color: #24292e;     
-  
+  background-color: #24292e;
+  width: 290px;              
+  margin-left: -0.5rem;       
 }
 
 

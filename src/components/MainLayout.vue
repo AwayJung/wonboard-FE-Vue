@@ -29,10 +29,10 @@ export default {
 <style scoped>
 .main-layout {
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 296px 1fr;
   gap: 1.5rem;
-  padding: 1.5rem;
-  max-width: 1200px;
+  padding: 1.5rem 1.5rem 1.5rem 0; /* 왼쪽 패딩만 0으로 */
+  max-width: 1280px;
   margin: 0 auto;
   flex: 1;
 }
@@ -42,6 +42,7 @@ export default {
   top: 130px;
   align-self: start;
   height: fit-content;
+  padding-left: 0.5rem; /* 프로필 영역에 약간의 패딩 추가 */
 }
 
 .content-area {
