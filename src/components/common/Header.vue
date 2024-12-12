@@ -25,7 +25,7 @@
         </router-link>
       </h1>
       <nav class="main-nav">
-        <router-link class="nav-link" to="/aboutMe">
+        <router-link class="nav-link" to="/aboutme">
           <i class="fas fa-user"></i>
           <span>About Me</span>
         </router-link>
@@ -33,7 +33,7 @@
           <i class="fas fa-laptop-code"></i>
           <span>Skills</span>
         </router-link>
-        <a class="nav-link" href="https://www.notion.so/..." target="_blank">
+        <a class="nav-link" href="https://www.notion.so/STUDY-ca55382a6344434ab3a3c5b32414a0e5" target="_blank">
           <i class="fas fa-book"></i>
           <span>Notion</span>
         </a>

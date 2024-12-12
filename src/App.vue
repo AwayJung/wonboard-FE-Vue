@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <Header />
@@ -47,6 +48,7 @@ html, body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  /* margin-top: 100px; 헤더의 높이만큼 여백 추가 */
 }
 
 ::-webkit-scrollbar {
