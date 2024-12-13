@@ -45,7 +45,7 @@
 <style scoped>
 .about-me-container {
   min-height: calc(100vh - 60px);
-  margin-top: 100px;
+  margin-top: 120px;
   position: relative;
   padding: 0 2rem;
   background: #f0f2f5; /* 연한 회색 배경 */
