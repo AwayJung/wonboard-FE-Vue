@@ -27,7 +27,8 @@ export default {
 
 <style scoped>
 .section-container {
-  background: white;
+  background: hwb(0 83% 16%);;
+
   border-radius: 6px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -58,7 +59,7 @@ export default {
 
 .section-content p {
   margin: 0;
-  line-height: 1.8;
+  line-height: 2.2;
   font-size: 1rem;
   color: #4a5568;
 }

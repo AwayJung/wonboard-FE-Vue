@@ -11,7 +11,7 @@ export const profileData = {
 
 export const quickInfoCards = [
   {
-    title: "학력",
+    title: "학과/학점",
     content: "동양어문학과 (4.28/4.5)",
   },
   {

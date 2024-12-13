@@ -1,7 +1,7 @@
 <template>
   <section class="section-container growth-section">
     <h2 class="section-title">
-      <i class="fas fa-chart-line title-icon"></i>
+
       {{ sectionData.title }}
     </h2>
     <div class="section-content">
@@ -27,7 +27,8 @@ export default {
 
 <style scoped>
 .section-container {
-  background: white;
+  background: hwb(0 83% 16%);;
+
   border-radius: 6px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -45,11 +46,6 @@ export default {
   align-items: center;
 }
 
-.title-icon {
-  color: #3182ce;
-  margin-right: 0.5rem;
-}
-
 .section-content {
   background: #f8f9fa;
   padding: 1.5rem;
@@ -59,16 +55,11 @@ export default {
 
 .section-content p {
   margin: 0;
-  line-height: 1.8;
+  line-height: 2;
   font-size: 1rem;
   color: #4a5568;
 }
 
-.section-content p::first-letter {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #3182ce;
-}
 
 @media (max-width: 768px) {
   .section-container {

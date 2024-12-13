@@ -17,30 +17,30 @@
           <div class="info-grid">
             <div class="contact-info">
               <div class="info-item">
-                <i class="fas fa-envelope"></i>
+
                 {{ profileData.name }}
               </div>
               <div class="info-item">
-                <i class="fas fa-envelope"></i>
+
                 {{ profileData.email }}
               </div>
               <div class="info-item">
-                <i class="fas fa-phone"></i>
+
                 {{ profileData.phone }}
               </div>
               <div class="info-item">
-                <i class="fas fa-map-marker-alt"></i>
+
                 {{ profileData.address }}
               </div>
             </div>
             
             <div class="personal-info">
               <div class="info-item">
-                <i class="fas fa-calendar"></i>
+
                 {{ profileData.birthDate }}
               </div>
               <div class="info-item">
-                <i class="fas fa-university"></i>
+
                 {{ profileData.university }}
               </div>
             </div>
@@ -96,34 +96,33 @@ export default {
 </script>
 
 <style scoped>
-.header-section {
-  margin-bottom: 2rem;
-}
 .profile-header {
   background: white;
-  border-radius: 6px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  margin-bottom: 2rem; 
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .header-content {
   display: flex;
-  gap: 3rem;
-  align-items: center;
+  gap: 4rem;
+  align-items: flex-start;
 }
 
 .profile-image-wrapper {
   flex-shrink: 0;
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 180px;
+  border: 4px solid #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .profile-image {
   width: 100%;
   height: 100%;
-  border-radius: 6px;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .profile-info {
@@ -132,86 +131,89 @@ export default {
 
 .title {
   font-size: 2rem;
-  font-weight: 700;
-  color: #2d3748;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 2rem;
 }
 
 .info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  padding: 0.5rem 0;
   color: #4a5568;
-  font-size: 0.95rem;
-}
-
-.info-item i {
-  color: #3182ce;
   font-size: 1rem;
+  border-bottom: 1px solid #edf2f7;
 }
 
 .info-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;  /* 카드 간 간격 증가 */
+  gap: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 .quick-card {
-  background: #f8f9fa;
-  border-radius: 6px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: all 0.2s ease;
 }
 
 .quick-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
-  color: #2d3748;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 600;
+  color: #2d3748;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 0.75rem;
 }
 
 .card-body {
-  color: #4a5568;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 1.1rem;
+  color: #1a202c;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
+  .profile-header {
+    padding: 1.5rem;
+  }
+
   .header-content {
     flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .profile-image-wrapper {
+    width: 140px;
+    height: 140px;
   }
 
   .info-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .info-item {
-    justify-content: center;
   }
 
   .info-cards {
     grid-template-columns: 1fr;
   }
 
-  .profile-image-wrapper {
-    width: 180px;
-    height: 180px;
+  .title {
+    text-align: center;
+    font-size: 1.5rem;
   }
 }
 </style>
