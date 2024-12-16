@@ -27,12 +27,12 @@
       <nav class="main-nav">
         <router-link class="nav-link" to="/aboutme">
           <i class="fas fa-user"></i>
-          <span>About Me</span>
+          <span>자기소개서</span>
         </router-link>
-        <router-link class="nav-link" to="/skills">
+        <!-- <router-link class="nav-link" to="/skills">
           <i class="fas fa-laptop-code"></i>
-          <span>Skills</span>
-        </router-link>
+          <span>기술</span>
+        </router-link> -->
         <a class="nav-link" href="https://www.notion.so/STUDY-ca55382a6344434ab3a3c5b32414a0e5" target="_blank">
           <i class="fas fa-book"></i>
           <span>Notion</span>
